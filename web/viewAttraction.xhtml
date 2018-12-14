@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Attraction #{login.regularUserAccount.selectedAttr}</title>
+        
+    </h:head>
+
+    <h:body style="background-color: lightblue;">
+        
+        <b:container style="padding:150px;">
+            
+            <h:form>
+                
+                <b:navBar brand="Home" brandHref="index.xhtml" fluid="true" position="top" sticky="true">
+                    <b:navbarLinks pull="right" styleClass="hidden-xs" >
+
+                        <b:navLink value="Hi, #{login.regularUserAccount.uid}" href="editprofile.xhtml"></b:navLink>
+                         <b:navLink value="My Favorites" href="displayAttractionByFav.xhtml"></b:navLink>
+                        <b:navCommandLink value="Logout" action="#{login.regularUserAccount.signOut()}"></b:navCommandLink>
+                    </b:navbarLinks>
+                </b:navBar>
+                <div style="margin:0 auto; width: 300px; padding:15px;">
+                    <b:image value="../images/logo.png" style="height: 268px; width: 268px;"></b:image>
+                </div>
+                <div style="text-align: center;">
+                    <h2>#{login.regularUserAccount.viewAttraction()}</h2>
+                    
+                        <b:commandButton icon-size="2x" iconAwesome="thumbs-up" action="#{login.regularUserAccount.like()}"
+                            look="success" title="icon-size='2x'" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <b:commandButton icon-size="2x" iconAwesome="thumbs-down" action="#{login.regularUserAccount.disLike()}"
+                            look="success" title="icon-size='2x'" />
+                        
+                        
+                        <h4>#{login.regularUserAccount.countLike()}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        #{login.regularUserAccount.countDislike()}</h4>
+                    
+                </div>
+                <div style="margin:0 auto; width: 300px; padding:15px;">
+                    <b:growl id="growl" globalOnly="true" showDetail="true" severity="info,error"></b:growl>
+                    <b:commandButton look="primary btn-block" id="addAttractionToFavorites" value="Add Attraction To Favorites"
+                                     onclick="if (!confirm('Are you sure you want to add this attraction to My Favorites?'))
+                                             return false" update="growl"
+                                         action="#{login.regularUserAccount.addAttractionToFavorite()}"><b:icon value="plus-sign"/>
+                    </b:commandButton>
+
+                    <b:commandButton look="primary btn-block" id="rateScore" value="Rate Score" action="rateScore.xhtml">
+                        <b:icon value="edit"/>
+                    </b:commandButton>
+
+                    <b:commandButton look="primary btn-block" id="review" value="Review" action="giveReview.xhtml">
+                        <b:icon value="comment"/>
+                    </b:commandButton>
+
+                    <b:commandButton look="primary btn-block" id="questionsAndAnswers" value="Q/A" action="questionAndAnswer.xhtml">
+                        <b:icon value="question-sign"/>
+                    </b:commandButton>
+                        
+                    <b:commandButton look="primary btn-block" value="Return"
+                        action="displayAttractionByCity.xhtml"><b:icon value="hand-left"/>
+                    </b:commandButton>
+                </div>
+                    
+            </h:form>
+            
+        </b:container>
+        <div style="text-align: center; ">Theme by &copy; Ngan Pham</div>
+    </h:body>
+     
+</html>
+

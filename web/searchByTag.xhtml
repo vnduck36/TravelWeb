@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Search By Tag</title>
+        
+    </h:head>
+
+    <h:body style="background-color: lightblue;">
+        
+        <b:navBar brand="Home" brandHref="index.xhtml" fluid="true" position="top" sticky="true">
+            <b:navbarLinks pull="right" styleClass="hidden-xs" >
+                <b:navLink value="Hi, #{login.regularUserAccount.uid}" href="editprofile.xhtml"></b:navLink>
+                <b:navLink value="My Favorites" href="displayAttractionByFav.xhtml"></b:navLink>
+                <b:navLink value="Logout" action="#{login.regularUserAccount.signOut()}"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container style="padding:150px;">
+            
+            <h:form>
+                <b:navBar brand="Home" brandHref="index.xhtml" fluid="true" position="top" sticky="true">
+                    <b:navbarLinks pull="right" styleClass="hidden-xs" >
+                        <b:navLink value="Hi, #{login.regularUserAccount.uid}" href="editprofile.xhtml"></b:navLink>
+                        <b:navLink value="My Favorites" href="displayAttractionByFav.xhtml"></b:navLink>
+                        <b:navCommandLink value="Logout" action="#{login.regularUserAccount.signOut()}"></b:navCommandLink>
+                    </b:navbarLinks>
+                </b:navBar>
+                <div style="padding:150px;">
+                    <div style="margin: 0 auto; width: 300px; padding:15px;">
+                        <b:image value="../images/logo.png" style="height: 268px; width: 268px;"></b:image>
+                        <h2 class="form-heading" style="text-align: center;">Search By Tag</h2>
+
+                        <b:inputText id="city" placeholder="Tag"
+                                     autocomplete="false"
+                                     value="#{login.regularUserAccount.atag}" label="Tag">
+
+                        <f:facet name="prepend"><b:icon name="search"/></f:facet> 
+                        </b:inputText>
+
+                        <b:commandButton look="primary btn-block" value="Search"  
+                                         action="displayAttractionByTag.xhtml" ><b:icon value="search"/>
+                        </b:commandButton>
+
+                        <b:commandButton look="primary btn-block" value="Return" 
+                                         action="searchAttraction.xhtml"><b:icon value="hand-left"/>
+                        </b:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </b:container>
+        <div style="text-align: center; ">Theme by &copy; Ngan Pham</div>
+    </h:body>
+     
+</html>

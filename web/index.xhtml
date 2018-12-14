@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Travel Advisor Home Page</title>
+        <style type="text/css">
+            .form-signin{
+                margin: 0 auto;
+                width: 300px;
+                padding:15px;
+            }
+        </style>
+    </h:head>
+    <h:body style="background-image:url('../images/header-bg.jpeg'); background-color: lightblue;">
+        <b:container style="padding:100px;">
+            <h:form styleClass="form-signin" prependId="false">
+                <b:image value="../images/logo.png" style="height: 268px; width: 268px;"></b:image>
+                
+                    <h2 class="form-signin-heading" style="text-align: center;">Login</h2>
+                    <b:row>
+
+                        <b:inputText id="username" placeholder="Username"
+                                     autocomplete="false"
+                                     value="#{login.uid}" label="Username">
+
+                        <f:facet name="prepend"><b:icon name="user"/></f:facet> 
+                        </b:inputText>
+                        
+                    </b:row>
+                    <b:row>
+
+                        <b:inputSecret id="password" placeholder="Password"
+                                       autocomplete="false"
+                                value="#{login.password}" label="Password">
+                        <f:facet name="prepend"><b:iconAwesome name="key"/></f:facet>
+                        </b:inputSecret>
+
+                        <b:selectBooleanCheckbox value="false" caption="Remember Me"></b:selectBooleanCheckbox>
+
+                        <b:growl id="growl" globalOnly="true" showDetail="true" severity="error, info"></b:growl>
+
+                        <b:commandButton look="primary btn-block" value="Login" icon="log-in" action="#{login.login()}" update="growl"></b:commandButton>
+                        
+                        <b:commandButton look="primary btn-block" value="Register" icon="pencil" action="register.xhtml"></b:commandButton>
+
+                    </b:row>
+                    
+            </h:form>
+            
+        </b:container>
+        <div style="text-align: center; ">Theme by &copy; Ngan Pham</div>
+    </h:body>
+</html>

@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Attraction Request</title>
+        
+    </h:head>
+
+    <h:body style="background-color: lightblue;">
+        
+        <b:container style="padding:100px;">
+            
+            <h:form styleClass="form-user">
+                <b:navBar brand="Home" brandHref="index.xhtml" fluid="true" position="top" sticky="true">
+                    <b:navbarLinks pull="right" styleClass="hidden-xs" >
+                        <b:navLink value="Hi, #{login.regularUserAccount.uid}" href="editprofile.xhtml"></b:navLink>
+                        <b:navLink value="My Favorites" href="displayAttractionByFav.xhtml"></b:navLink>
+                        <b:navCommandLink value="Logout" action="#{login.regularUserAccount.signOut()}"></b:navCommandLink>
+                    </b:navbarLinks>
+                </b:navBar>
+                <div style="padding:150px;">
+                    <div style="margin: 0 auto; width: 300px; padding:15px;">
+                        
+                    <b:image value="../images/logo.png" style="height: 268px; width: 268px;"></b:image>
+                    <h2 class="form-user-heading" style="text-align: center;">Create An Attraction Request</h2>
+                
+                <b:row>
+                           
+                    <b:inputText id="AttractionName" placeholder="Attraction Name" required="true"
+                                 autocomplete="false" update="@(.message)" label="Attraction Name"
+                                 value="#{login.regularUserAccount.name}">
+
+                    </b:inputText>
+                    <b:message id="message"></b:message>
+                </b:row>
+                
+                <b:row>
+
+                    <b:inputText id="Description" placeholder="Description" required="true"
+                                   autocomplete="false" update="@(.message)" label="Description"
+                            value="#{login.regularUserAccount.description}">
+
+                    </b:inputText>
+                </b:row>
+                 
+                <b:row>
+
+                    <b:inputText id="City" placeholder="City" required="true"
+                                   autocomplete="false" update="@(.message)" label="City"
+                            value="#{login.regularUserAccount.city}">
+
+                    </b:inputText>
+                </b:row>
+                
+                <b:row>
+
+                    <b:inputText id="State" placeholder="State" required="true"
+                                   autocomplete="false" update="@(.message)" label="State"
+                            value="#{login.regularUserAccount.state}">
+
+                    </b:inputText>
+                </b:row>
+                
+                    <b:row>
+                        
+                        <b:row>
+                            <h:outputLabel value="Profile Tags" />
+                            <b:selectMultiMenu value="#{login.regularUserAccount.at}" id="atag" required="true"
+                           ondropdownhide="console.log('hide tag');ajax:regularUser.updateProfileTagMessage()"
+                           update="selectMultiAjax" process="@this">
+                                <f:selectItem itemValue = "History" itemLabel = "History" />
+                                <f:selectItem itemValue = "Shopping" itemLabel = "Shopping" />
+                                <f:selectItem itemValue = "Beach" itemLabel = "Beach" />
+                                <f:selectItem itemValue = "Urban" itemLabel = "Urban" />
+                                <f:selectItem itemValue = "Nature" itemLabel = "Nature" />
+                                <f:selectItem itemValue = "Family" itemLabel = "Family" />
+                            </b:selectMultiMenu>
+                        </b:row>
+                        <b:row>
+                            <br></br>
+                            <b:message for="@previous" />
+                            <h:outputLabel value="Selected Tags" for="ptagOutput" />
+                            <b:inputText auto-update="true" value="#{login.regularUserAccount.at}" disabled="true" id="atagOutput" />
+                        </b:row>
+                        
+                    </b:row>
+                    <b:row>
+                        <br></br>
+                        <b:messages id="messages" globalOnly="true" severity="info"></b:messages>
+                        <b:growl id="growl" globalOnly="true" showDetail="true" severity="info"></b:growl>
+                        <b:commandButton look="primary btn-block" value="Send" 
+                                         action="#{login.regularUserAccount.createAttractionRequest()}" 
+                                         update="growl"><b:icon value="send"/>
+                        </b:commandButton>
+            
+                        <b:commandButton look="primary btn-block" value="Return" 
+                                             action="welcomeRegularUser.xhtml"><b:icon value="hand-left"/>
+                        </b:commandButton>
+                    </b:row>
+                    
+                    </div>
+                </div>
+                    
+            </h:form>
+        </b:container>
+        <div style="text-align: center; ">Theme by &copy; Ngan Pham</div>
+    </h:body>
+     
+</html>
